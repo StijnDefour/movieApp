@@ -10,7 +10,7 @@ angular.module('parkingApp', ['ngRoute'])
 	        });
 	})
 	
-	.controller('homeCtrl', function($scope, acteurSrv) {
+	.controller('homeCtrl', function($scope, acteurSrv, saveSrv) {
 		
 	    	$('#searchButton').on('click', function (e) {
 
@@ -26,10 +26,9 @@ angular.module('parkingApp', ['ngRoute'])
 	    			for (i = 0; i < arr.length; i++) { 
 	    				arrTitles[i] = arr[i].title;
 	    			}
-	    			console.log(arrTitles);
 	    			$scope.films = JSON.stringify(arrTitles);
 	    			
-	    			saveSrv.setObject(acteur, data);
+	    			saveSrv.setObject(acteur, arrTitles);
 	    		});
 	    	});
     })
