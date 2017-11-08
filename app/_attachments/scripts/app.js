@@ -52,8 +52,28 @@ angular.module('parkingApp', ['ngRoute'])
     .service('saveSrv', function($window, $http){
 		  this.setObject = function(key, value){
 			  $window.localStorage[key] = JSON.stringify(value);
-			  //Save in CouchDB
-			  //$http.put('../../' + key, value);
+			  	//Save in CouchDB
+				var doc = {};
+				
+				doc.acteur = key;
+				doc.films = value;
+				doc.type = 'acteur';
+				var json = JSON.stringify(doc);
+				console.log(json);
+				
+				$.ajax({
+					type:			'PUT',
+					url:				'../../' + key,
+					data:			json,
+					contentType: 	'application/json',
+					async:			true,
+					success:		function(data){
+						console.log('succes');
+					},
+					error:		function(XMLHttpRequest, textStatus, errorThrown){
+						console.log(errorThrown); 
+					}
+				});;
 		  };
 		  
 		  this.getObject = function(key){
