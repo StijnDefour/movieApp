@@ -55,7 +55,7 @@ angular.module('parkingApp', ['ngRoute'])
 			  	//Save in CouchDB
 				var doc = {};
 				
-				doc.acteur = key;
+				doc.actor = key;
 				doc.films = value;
 				doc.type = 'acteur';
 				var json = JSON.stringify(doc);
